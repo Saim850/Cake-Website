@@ -117,6 +117,7 @@ export default function AddProduct() {
             </label>
 
             <select onChange={handleChange} name="category" value={formData.category} className="w-full border rounded-lg px-4 py-3">
+                  <option>Select Category</option>
               {category.map((val) => (
                   <option key={val.id} value={val.id}>{val.name}</option>
               ))}
