@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 export default function AdminOrderDetails() {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
-  const [status, setStatus] = useState("")
+  const [isLoading, setLoading] = useState(true);
+  const [status, setStatus] = useState("");
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
   
@@ -18,6 +19,8 @@ export default function AdminOrderDetails() {
         console.log(res.data)
       } catch (error) {
         console.log(error);
+      }finally{
+        setLoading(false)
       }
     };
 
@@ -50,12 +53,14 @@ export default function AdminOrderDetails() {
     }
   }
 
-  if (!order) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Loading...
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
       </div>
-    );
+    )
   }
 
   return (

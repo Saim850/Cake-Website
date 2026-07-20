@@ -5,10 +5,11 @@ import { Link } from "react-router-dom"
 import api from "../../api"
 import { Clock, HandCoins, ListOrdered, Package } from "lucide-react"
 export default function AdminLayout() {
-  const [totalOrder, setTotalOrder] = useState(0)
-  const [totalProduct, setTotalProduct] = useState(0)
-  const [totalRevenue, setTotalRevenue] = useState(0)
-  const [pendingOrder, setPendingOrder] = useState(0)
+  const [totalOrder, setTotalOrder] = useState(0);
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [totalRevenue, setTotalRevenue] = useState(0);
+  const [pendingOrder, setPendingOrder] = useState(0);
+  const [isLoading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -33,10 +34,22 @@ export default function AdminLayout() {
 
       }catch(error){
         console.log(error)
+      }finally{
+        setLoading(false)
       }
     }
     fetchData();
   }, [])
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <section className="min-h-screen flex">

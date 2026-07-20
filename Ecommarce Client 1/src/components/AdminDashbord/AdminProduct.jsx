@@ -14,6 +14,8 @@ export default function AdminProduct() {
         
       }catch(error){
         console.log(error);
+      }finally{
+        isLoading(false);
       }
     }
     fetchData();  
