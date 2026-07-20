@@ -15,7 +15,7 @@ export default function AdminProduct() {
       }catch(error){
         console.log(error);
       }finally{
-        isLoading(false);
+        setLoading(false);
       }
     }
     fetchData();  
@@ -29,8 +29,6 @@ export default function AdminProduct() {
       }catch(error){
         console.log(error);
         alert("Somthing went worng!!");
-      }finally{
-        setLoading(false)
       }
     }
   }
