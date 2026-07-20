@@ -39,7 +39,8 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173"
+    "http://localhost:5173",
+    "https://your-project.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
