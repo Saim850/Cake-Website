@@ -25,7 +25,6 @@ export default function AdminCustomers() {
     if(confirm(`Are you sure ?`)){
       try{
         api.delete(`admin/users/${id}/`);
-        window.location.reload();
       }catch(error){
         console.log(error);
         alert("Somthing went worng!!");

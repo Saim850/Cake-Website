@@ -25,7 +25,6 @@ export default function AdminProduct() {
     if(confirm(`Are you sure?`)){
       try{
         api.delete(`product/${id}/`);
-        window.location.reload();
       }catch(error){
         console.log(error);
         alert("Somthing went worng!!");
