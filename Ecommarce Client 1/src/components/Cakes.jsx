@@ -24,6 +24,7 @@ export default function Cake() {
       try{
         const res = await api.get(url)
         setCakes(res.data.results)
+        console.log(res.data.results)
         setMaxPageNumber(Math.ceil(res.data.count/12));
       }catch(error){
         console.log(error)
