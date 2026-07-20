@@ -1,0 +1,22 @@
+# Python
+Ecommarce Api 1/venv/
+Ecommarce Api 1/__pycache__/
+Ecommarce Api 1/*.pyc
+Ecommarce Api 1/staticfiles
+
+
+# Environment variables
+Ecommarce Api 1/.env
+
+# Node
+Ecommarce Client 1/node_modules/
+
+# Build files
+Ecommarce Client 1/dist/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
