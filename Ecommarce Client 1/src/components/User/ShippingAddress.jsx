@@ -9,7 +9,7 @@ export default function CreateShippingAddress() {
   const [district, setDistrict] = useState([]);
   const [upazila, setUpazila] = useState([]);
 
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -229,10 +229,10 @@ export default function CreateShippingAddress() {
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={isLoading}
           className="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded md:col-span-2"
         >
-          {loading ? "Saving..." : "Save Address"}
+          {isLoading ? "Saving..." : "Save Address"}
         </button>
       </form>
     </div>

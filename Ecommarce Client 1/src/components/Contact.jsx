@@ -9,6 +9,7 @@ export default function Contact() {
       phone:"",
       message:"",
   })
+  const[isLoading, setLoading] = useState(true);
 
   const handleChange = (e) =>{
     setFormDate({...formData, [e.target.name]:e.target.value})
@@ -17,12 +18,24 @@ export default function Contact() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     try{
-      await api.post('contact/', formData)
-      alert("Message submit successfully")
+      await api.post('contact/', formData);
+      alert("Message submit successfully");
     }catch(error){
       console.log(error.response.data);
-      alert("Somthing went worng!")
+      alert("Somthing went worng!");
+    }finally{
+      setLoading(false);
     }
+  }
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
   }
 
   return (

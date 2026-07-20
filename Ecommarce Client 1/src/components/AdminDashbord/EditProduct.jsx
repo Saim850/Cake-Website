@@ -14,6 +14,7 @@ export default function EditProduct() {
     price:"",
 
   })
+  const [isLoading, setLoading] = useState(true);
   
   useEffect(() => {
     const fetchData = async() => {
@@ -34,6 +35,8 @@ export default function EditProduct() {
 
       }catch(error){
         console.log(error);
+      }finally{
+        setLoading(false)
       }
     }
     fetchData();  
@@ -78,6 +81,16 @@ export default function EditProduct() {
       console.log(error.response.data);
     }
   };
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-xl shadow p-8">

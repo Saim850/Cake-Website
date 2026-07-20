@@ -3,6 +3,8 @@ import api from "../../api";
 
 export default function AdminCustomers() {
   const[customers, setCustomers] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchData = async() => {
@@ -12,6 +14,8 @@ export default function AdminCustomers() {
         
       }catch(error){
         console.log(error);
+      }finally{
+        setLoading(false)
       }
     }
     fetchData();
@@ -27,6 +31,16 @@ export default function AdminCustomers() {
         alert("Somthing went worng!!");
       }
     }
+  }
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
   }
 
   return (

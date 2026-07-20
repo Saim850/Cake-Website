@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const[cartItems, setCartItems] = useState([]);
+  const[isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -13,6 +14,8 @@ const Cart = () => {
         setCartItems(res.data)
       }catch(error){
         console.log(error)
+      }finally{
+        setLoading(false)
       }
     }
     fetchData()
@@ -64,6 +67,16 @@ const Cart = () => {
 
   const deliveryFee = 100;
   const total = subtotal + deliveryFee;
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <section className="min-h-screen bg-gray-50 py-12">

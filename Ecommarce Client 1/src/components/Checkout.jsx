@@ -10,6 +10,7 @@ export default function Checkout() {
     notes:"",
     cart:{},
   });
+  const[isLoading, setLoading] = useState(true);
 
   const[shippingAddress, setShippingAddress] = useState([]);
 
@@ -29,6 +30,8 @@ export default function Checkout() {
 
       } catch (error) {
         console.log(error);
+      }finally{
+        setLoading(false)
       }
     };
 
@@ -84,6 +87,16 @@ export default function Checkout() {
       console.log(error)
     }
   } 
+  
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10">

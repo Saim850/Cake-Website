@@ -7,7 +7,7 @@ const EditProfile = () => {
     email: "",
     phone_number: "",
   });
-
+  const[isLoading, setLoading] = useState(true);
 
   useEffect(() =>{
     const fetchData = async() =>{
@@ -20,10 +20,10 @@ const EditProfile = () => {
           phone_number:res1.data.phone_number,
 
         })
-        
       }catch(error){
         console.log(error )
-
+      }finally{
+        setLoading(false)
       }
     }
     fetchData();
@@ -35,7 +35,6 @@ const EditProfile = () => {
       [e.target.name]: e.target.value,
     });
   };
-
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -50,6 +49,16 @@ const EditProfile = () => {
 
     }
   };
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-pink-50 py-10 px-4">

@@ -4,6 +4,7 @@ import api from "../../api";
 const AdminCategory = () => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() =>{
     const fetchData = async() =>{
@@ -11,7 +12,9 @@ const AdminCategory = () => {
         const res1 = await api.get('category/')
         setCategory(res1.data);
       }catch(error){
-        console.log(error)
+        console.log(error);
+      }finally{
+        setLoading(false);
       }
     }
     fetchData()
@@ -43,6 +46,16 @@ const AdminCategory = () => {
     }catch(error){
       console.log(error);
     }
+  }
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
   }
 
   return (

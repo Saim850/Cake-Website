@@ -4,25 +4,37 @@ import api from "../../api";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
-  const [user, setUser] = useState([])
-  const [orders, setOrder] = useState([])
+  const [user, setUser] = useState([]);
+  const [orders, setOrder] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async() => {
       try{
         const [userData, orderData] = await Promise.all([ 
           api.get('auth/users/me/'),
-          api.get('order/')
+          api.get('order/'),
         ])
-        setUser(userData.data)
-        setOrder(orderData.data)
-
+        setUser(userData.data);
+        setOrder(orderData.data);
       }catch(error){
-        console.log(error)
+        console.log(error);
+      }finally{
+        setLoading(false);
       }
     } 
     fetchData();
   }, [])
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <section className="min-h-screen bg-pink-50 py-10">

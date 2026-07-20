@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Featured() {
   const [featuredCakes, setfeaturedCakes] = useState([])
-  const [isLoding, setLoding]  = useState(true)
+  const [isLoading, setLoading]  = useState(true)
 
   useEffect(() => {
     const fetchData = async() => {
@@ -15,7 +15,7 @@ export default function Featured() {
       }catch(error){
         console.log(error)
       }finally{
-        setLoding(false)
+        setLoading(false)
       }
     }
     fetchData();
@@ -46,7 +46,7 @@ export default function Featured() {
           </Link>
         </div>
 
-        {isLoding ? (
+        {isLoading ? (
           <p className="text-center mt-5 text-pink-600">
             <span className="loading loading-spinner loading-xl"></span>
           </p>

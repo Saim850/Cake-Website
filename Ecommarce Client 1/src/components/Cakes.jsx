@@ -1,4 +1,4 @@
-import { Star,ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
 import api from "../api";
 import { useSearchParams } from "react-router-dom";

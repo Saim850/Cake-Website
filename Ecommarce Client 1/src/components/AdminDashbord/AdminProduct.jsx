@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function AdminProduct() {
   const[order, setOrder] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -26,8 +27,20 @@ export default function AdminProduct() {
       }catch(error){
         console.log(error);
         alert("Somthing went worng!!");
+      }finally{
+        setLoading(false)
       }
     }
+  }
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
   }
 
   return (

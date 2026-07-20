@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 export default function AdminOrders() {
   const[orders, setOrders] = useState([])
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async() => {
@@ -14,10 +15,22 @@ export default function AdminOrders() {
         
       }catch(error){
         console.log(error)
+      }finally{
+        setLoading(false)
       }
     }
     fetchData();
   }, [])
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="bg-white rounded shadow p-4">

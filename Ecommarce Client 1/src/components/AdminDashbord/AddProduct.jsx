@@ -3,24 +3,24 @@ import api from "../../api";
 
 export default function AddProduct() {
   const[category, setCategory] = useState([]);
-
   const[formData, setFormData] = useState({
     image:null,
     name:"",
     category:"",
     category_name:"",
     price:"",
-
   })
+  const[isLoading, setLoading] = useState(true);
   
   useEffect(() => {
     const fetchData = async() => {
       try{
         const res1= await api.get(`category/`)
         setCategory(res1.data);
-
       }catch(error){
         console.log(error);
+      }finally{
+        setLoading(false);
       }
     }
     fetchData();  
@@ -65,6 +65,16 @@ export default function AddProduct() {
       console.log(error.response.data);
     }
   };
+
+  if(isLoading){
+    return(
+      <div className="h-screen">
+        <div className="flex justify-center mt-10">
+          <span className="loading loading-spinner text-secondary"></span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-3xl mx-auto bg-white rounded-xl shadow p-8">
